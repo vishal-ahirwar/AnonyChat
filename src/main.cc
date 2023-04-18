@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
 {
   
     crow::SimpleApp app;
-        CROW_ROUTE(app, "/")
+    CROW_ROUTE(app, "/")
     ([](const crow::request&req, crow::response&res)
      
      {
@@ -76,14 +76,14 @@ int main(int argc, char *argv[])
      }
      );
 
-         CROW_ROUTE(app, "/css/<string>")
+    CROW_ROUTE(app, "/css/<string>")
     ([](const crow::request&req, crow::response&res,const std::string&file_name)
      
      {
        send_style(res,file_name);
      }
      );
-         CROW_ROUTE(app, "/images/<string>")
+    CROW_ROUTE(app, "/images/<string>")
     ([](const crow::request&req, crow::response&res,const std::string&file_name)
      
      {
@@ -91,14 +91,14 @@ int main(int argc, char *argv[])
      }
      );
 
-            CROW_ROUTE(app, "/images/avatar/<string>")
+    CROW_ROUTE(app, "/images/avatar/<string>")
     ([](const crow::request&req, crow::response&res,const std::string&file_name)
      
      {
        send_images(res,"avatar/"+file_name);
      }
      );
-         CROW_ROUTE(app, "/scripts/<string>")
+    CROW_ROUTE(app, "/scripts/<string>")
     ([](const crow::request&req, crow::response&res,const std::string&file_name)
      
      {
@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
      }
      );
 
-         CROW_ROUTE(app, "/fonts/<string>")
+    CROW_ROUTE(app, "/fonts/<string>")
     ([](const crow::request&req, crow::response&res,const std::string&file_name)
      
      {
@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
      );
 
      
-         CROW_ROUTE(app, "/videos/<string>")
+    CROW_ROUTE(app, "/videos/<string>")
     ([](const crow::request&req, crow::response&res,const std::string&file_name)
      
      {
