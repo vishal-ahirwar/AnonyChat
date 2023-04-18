@@ -20,6 +20,37 @@ void send_file(crow::response&res,const std::string&file_name,const std::string&
         res.end();
 };
 
+
+void send_html(crow::response&res,const std::string&file_name)
+{
+    send_file(res,file_name+".html","text/html");
+};
+
+void send_style(crow::response&res,const std::string&file_name)
+{
+    send_file(res,"css/"+file_name,"text/css");
+};
+
+void send_scripts(crow::response&res,const std::string&file_name)
+{
+    send_file(res,"scripts/"+file_name,"text/javascript");
+};
+
+void send_images(crow::response&res,const std::string&file_name)
+{
+    send_file(res,"images/"+file_name,"image/png");
+};
+
+void send_fonts(crow::response&res,const std::string&file_name)
+{
+    send_file(res,"fonts/"+file_name,"text/font");
+};
+
+void send_videos(crow::response&res,const std::string&file_name)
+{
+    send_file(res,"videos/"+file_name,"video/mp4");
+};
+
 int main(int argc, char *argv[])
 {
   
@@ -28,9 +59,49 @@ int main(int argc, char *argv[])
     ([](const crow::request&req, crow::response&res)
      
      {
-        send_file(res,"index.html","plain-text");
+       send_html(res,"index");
      }
      );
+
+         CROW_ROUTE(app, "/css/<string>")
+    ([](const crow::request&req, crow::response&res,const std::string&file_name)
+     
+     {
+       send_style(res,file_name);
+     }
+     );
+         CROW_ROUTE(app, "/images/<string>")
+    ([](const crow::request&req, crow::response&res,const std::string&file_name)
+     
+     {
+       send_images(res,file_name);
+     }
+     );
+         CROW_ROUTE(app, "/scripts/<string>")
+    ([](const crow::request&req, crow::response&res,const std::string&file_name)
+     
+     {
+       send_scripts(res,file_name);
+     }
+     );
+
+         CROW_ROUTE(app, "/fonts/<string>")
+    ([](const crow::request&req, crow::response&res,const std::string&file_name)
+     
+     {
+       send_fonts(res,file_name);
+     }
+     );
+
+     
+         CROW_ROUTE(app, "/videos/<string>")
+    ([](const crow::request&req, crow::response&res,const std::string&file_name)
+     
+     {
+       send_videos(res,file_name);
+     }
+     );
+     
     char *port = getenv("PORT");
     uint16_t iport = static_cast<uint16_t>(port ? std::stoi(port) : 8080);
     app.port(iport).multithreaded().run();
