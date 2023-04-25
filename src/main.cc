@@ -2,8 +2,8 @@
 // Auto Genrated C++ file by newton CLI
 #include "../include/util.h"
 #include <memory>
-#include<mutex>
-#include<unordered_set>
+#include <mutex>
+#include <unordered_set>
 
 int main(int argc, char *argv[])
 {
@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
   crow::SimpleApp *app = new crow::SimpleApp();
   V::Util *util = new V::Util();
   std::mutex mtx;
-  std::unordered_set<crow::websocket::connection*>users;
+  std::unordered_set<crow::websocket::connection *> users;
 
   CROW_ROUTE((*app), "/chat")
   (
@@ -19,21 +19,19 @@ int main(int argc, char *argv[])
       {
         util->send_html(res, "chat.html");
       });
-  CROW_ROUTE((*app),"/ws")
-  .websocket()
-  .onopen([&users,&mtx](crow::websocket::connection&conn)
-  {
+  CROW_ROUTE((*app), "/ws")
+      .websocket()
+      .onopen([&users, &mtx](crow::websocket::connection &conn)
+              {
+                std::lock_guard<std::mutex> _(mtx);
+                users.insert(&conn);
+              })
+      .onclose([&users, &mtx](crow::websocket::connection &conn, const std::string &reason)
+               {
     std::lock_guard<std::mutex>_(mtx);
-    users.insert(&conn);
-
-  })
-  .onclose([&users,&mtx](crow::websocket::connection&conn,const std::string&reason)
-  {
-    std::lock_guard<std::mutex>_(mtx);
-    users.erase(&conn);
-  })
-  .onmessage([&users,&mtx](crow::websocket::connection&/*conn*/,const std::string&data,bool is_binary)
-  {
+    users.erase(&conn); })
+      .onmessage([&users, &mtx](crow::websocket::connection & /*conn*/, const std::string &data, bool is_binary)
+                 {
     std::lock_guard<std::mutex>_(mtx);
     for(const auto user:users)
     {
@@ -45,8 +43,7 @@ int main(int argc, char *argv[])
         user->send_text(data);
       };
       
-    }
-  });
+    } });
 
   CROW_ROUTE((*app), "/")
   ([&util](const crow::request &req, crow::response &res)
