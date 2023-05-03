@@ -4,11 +4,13 @@ const $log = $('#log');
 const $msg = $('#msg');
 const $submit = $('#submitMessage');
 const id = Math.floor(Math.random() * 1000000);
-
+const $username=$('#username');
+$username.val("#"+id);
 createMessage = (id, type, body) => JSON.stringify({id, type, body});
 
 socket.onopen = () => {
     console.log('open');
+    socket.send(createMessage(id,'chat',"#"+id+" : just joined the party!"));
 };
 socket.onclose = () => {
     console.log('close');
@@ -28,6 +30,6 @@ socket.onmessage = (e) => {
 };
 $submit.submit(event => {
     event.preventDefault();
-    socket.send(createMessage(id, 'chat', $msg.val()));
+    socket.send(createMessage(id, 'chat', "#"+id+" : "+$msg.val()));
     $msg.val('');
 });

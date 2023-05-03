@@ -3,25 +3,35 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Chat</title>
+    <title>Obsure Chat</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 </head>
-<body>
-<section class="section">
-    <div class="content">
-        <h1 class="title">Chat</h1>
-        <div class=" ">
-            <div class="field  is-expanded">
-                <form id="submitMessage" class="field has-addons">
-                    <input class="input" id="msg" type="text" placeholder="Type a message" required/>
-                    <button type="submit" class="button  is-primary" id="send">Send</button>
-                </form>
+<body style="background-color: #000211;">
+    <h1 class="title" style="color: rgb(255, 255, 255);padding-top: 2rem;padding-left: 2rem;">Obsure Chat <p style="font-size: x-small;">©2023 Vishal Ahirwar.</p> </h1> <textarea name="" id="username" cols="15" rows="1" style="background-color: #000211;padding-left: 2rem;color: red;border-style: none;"></textarea>
+    <p style="padding-left: 2rem
+    ;">Please don't refresh or leave session unless you want new username ;)</p>
+    <center>
+        <section class="section">
+            <div class="content">
+                <div class=" ">
+                    <div class="field  is-expanded">
+                        <form id="submitMessage" class="field has-addons">
+                            <input class="input" id="msg" type="text" placeholder="Type a message" required/>
+                            <button type="submit" class="button  is-primary" id="send">Send</button>
+                        </form>
+                    </div>
+                    <h1>
+
+                    <textarea class="textarea" id="log" placeholder="" rows=20 style="border-radius: 1rem;border-style: none;
+                    color:rgb(255, 255, 255); font-size: large;background-color: #000211;font-weight: bolder;color:rgb(255, 255, 255); -ms-overflow-style: none;scrollbar-width: none;"></textarea>
+                    </h1>
+                </div>
             </div>
-            <textarea class="textarea" id="log" placeholder="" rows=20></textarea>
-        </div>
-    </div>
-</section>
-<script src="scripts/websocket.js"></script>
+        </section>
+        <script src="scripts/websocket.js"></script>
+        <p style="padding-top: 0%;">Copyright © 2023 Univio Entertainment company</p>
+    </center>
+
 </body>
 </html>

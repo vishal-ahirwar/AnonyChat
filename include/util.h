@@ -19,6 +19,7 @@ namespace V
             void send_fonts(crow::response&res,const std::string&file_name);
             void send_videos(crow::response&res,const std::string&file_name);
             void send_docs(crow::response&res,const std::string&file_name);
+              void send_music(crow::response&res,const std::string&file_name);
 
     };
 };

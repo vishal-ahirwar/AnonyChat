@@ -51,9 +51,12 @@ namespace V
 
   void Util::send_videos(crow::response&res,const std::string&file_name)
   {
-      this->send_file(res,"videos/"+file_name,"video/mp4");
+      this->send_file(res,"videos/"+file_name,"video/mp3");
   };
-
+  void Util::send_music(crow::response&res,const std::string&file_name)
+  {
+      this->send_file(res,"music/"+file_name,"text/html");
+  };
   void Util::send_docs(crow::response&res,const std::string&file_name)
   {
     this->send_file(res,"docs/"+file_name,"text/documents");
