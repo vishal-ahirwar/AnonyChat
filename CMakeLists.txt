@@ -6,6 +6,7 @@ project(ChatServer)
 
 set(CMAKE_CXX_STANDARD 17)
 set(THREADS_PREFER_PTHREAD_FLAG ON)
+set(Boost_USE_STATIC_LIBS   ON)
 find_package(Boost COMPONENTS system filesystem REQUIRED)
 find_package(Threads)
 include_directories(${Boost_INCLUDE_DIRS})
